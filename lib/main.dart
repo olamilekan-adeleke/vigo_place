@@ -18,10 +18,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: const Size(428, 926),
       child: MaterialApp(
         title: 'VigoPlace',
-        theme: ThemeData(primaryColor: kcPrimaryColor),
+        theme: ThemeData(
+          primaryColor: kcPrimaryColor,
+          scaffoldBackgroundColor: kcWhite,
+        ),
         initialRoute: AuthStateScreen.route,
         onGenerateRoute: RouteGenerator.generateRoute,
         navigatorKey: AppRouter.instance.navigatorKey,

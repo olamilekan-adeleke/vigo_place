@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../constants/color.dart';
 import '../navigator/app_router.dart';
 import '../utils/sizer_utils.dart';
+import 'image_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
@@ -22,12 +23,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        left: sp(15),
-        right: sp(15),
-        top: sp(20),
-        bottom: sp(10),
-      ),
+      padding: EdgeInsets.only(top: sp(20), bottom: sp(10)),
       color: kcWhite,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,10 +35,13 @@ class AppBarWidget extends StatelessWidget {
             )
           else
             Container(),
-          SvgPicture.asset(
-            'assets/icons/app_name.svg',
+          SizedBox(
             height: sp(height),
             width: sp(width),
+            child: const CustomImageWidget(
+              imageUrl: 'assets/icons/app_name.png',
+              imageTypes: ImageTypes.asset,
+            ),
           ),
           trilling ?? Container(),
         ],

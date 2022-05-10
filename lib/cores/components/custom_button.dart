@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
     required this.onTap,
     this.color,
     this.textColor,
-    this.textSize,
+    this.textSize = 16,
     this.height,
     this.width,
     this.textFontWeight = FontWeight.w700,
@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
         iconData = null,
         text = null,
         textColor = null,
-        textSize = null,
+        textSize = 16,
         textFontWeight = null,
         iconSize = null,
         iconColor = null,
@@ -43,7 +43,7 @@ class CustomButton extends StatelessWidget {
     this.onTap,
     this.color,
     this.textColor,
-    this.textSize,
+    this.textSize = 16,
     this.height,
     this.width,
     this.textFontWeight,
@@ -65,7 +65,7 @@ class CustomButton extends StatelessWidget {
   })  : busy = false,
         text = null,
         textColor = null,
-        textSize = null,
+        textSize = 16,
         textFontWeight = null;
 
   final String? text;
@@ -74,7 +74,7 @@ class CustomButton extends StatelessWidget {
   final bool busy;
   final Color? color;
   final Color? textColor;
-  final double? textSize;
+  final double textSize;
   final double? height;
   final double? width;
   final FontWeight? textFontWeight;
@@ -103,7 +103,7 @@ class CustomButton extends StatelessWidget {
       child = TextWidget(
         text ?? 'no text',
         textColor: textColor ?? Colors.white,
-        fontSize: textSize,
+        fontSize: sp(textSize),
         fontWeight: textFontWeight,
       );
     }
@@ -122,7 +122,7 @@ class CustomButton extends StatelessWidget {
                 )
               : MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(sp(48.0)),
+                    borderRadius: BorderRadius.circular(sp(10.0)),
                   ),
                 ),
           backgroundColor: busy
@@ -143,7 +143,9 @@ class BorderButton extends StatelessWidget {
     this.busy = false,
     this.borderColor = kcTextColor,
     this.textColor,
-    this.textSize,
+    this.textSize = 16,
+    this.height,
+    this.width,
     this.textFontWeight = FontWeight.w700,
   }) : super(key: key);
 
@@ -152,19 +154,26 @@ class BorderButton extends StatelessWidget {
   final bool busy;
   final Color? borderColor;
   final Color? textColor;
-  final double? textSize;
+  final double textSize;
+  final double? height;
+  final double? width;
 
   final FontWeight? textFontWeight;
 
   @override
   Widget build(BuildContext context) {
+    const double __defaultHeight = 45.0;
+    final double __defaultWidth = MediaQuery.of(context).size.width * 0.95;
+
     return GestureDetector(
       onTap: onTap ?? () {},
       child: Container(
+        height: height ?? __defaultHeight,
+        width: width ?? __defaultWidth,
         padding: EdgeInsets.symmetric(horizontal: sp(15), vertical: sp(5)),
         decoration: BoxDecoration(
           color: kcWhite,
-          borderRadius: BorderRadius.circular(sp(48)),
+          borderRadius: BorderRadius.circular(sp(10)),
           border: Border.all(color: borderColor ?? kcWhite),
         ),
         child: busy
@@ -177,7 +186,7 @@ class BorderButton extends StatelessWidget {
                 child: TextWidget(
                   text ?? 'no text',
                   textColor: textColor,
-                  fontSize: textSize,
+                  fontSize: sp(textSize),
                   fontWeight: textFontWeight,
                 ),
               ),
