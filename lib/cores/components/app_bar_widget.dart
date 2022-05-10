@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants/color.dart';
 import '../navigator/app_router.dart';
 import '../utils/sizer_utils.dart';
-import 'custom_text_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget(
-    this.title, {
+  const AppBarWidget({
     Key? key,
+    this.width = 120,
+    this.height = 24,
     this.showBackButton = true,
     this.trilling,
   }) : super(key: key);
 
-  final String title;
+  final double width;
+  final double height;
   final bool showBackButton;
   final Widget? trilling;
 
@@ -37,7 +39,11 @@ class AppBarWidget extends StatelessWidget {
             )
           else
             Container(),
-          TextWidget(title, fontSize: sp(21), fontWeight: FontWeight.w700),
+          SvgPicture.asset(
+            'assets/icons/app_name.svg',
+            height: sp(height),
+            width: sp(width),
+          ),
           trilling ?? Container(),
         ],
       ),

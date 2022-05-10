@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vigo_place/cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/app_bar_widget.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+
 
 import '../../../../cores/utils/sizer_utils.dart';
 
@@ -12,6 +14,7 @@ class IntroScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           verticalSpace(),
+         const AppBarWidget(),
         ],
       ),
     );
