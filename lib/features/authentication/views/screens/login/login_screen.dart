@@ -10,6 +10,7 @@ import '../../../../../cores/components/custom_textfiled.dart';
 import '../../../../../cores/constants/color.dart';
 import '../../../../../cores/navigator/app_router.dart';
 import '../../../../../cores/utils/sizer_utils.dart';
+import '../../../../home/views/screens/home_screen.dart';
 import '../../widgets/social_widget.dart';
 import '../sign_up/sign_up_screen.dart';
 
@@ -77,7 +78,12 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
           verticalSpace(30),
-          CustomButton(text: 'Login', onTap: () {}),
+          CustomButton(
+            text: 'Login',
+            onTap: () {
+              AppRouter.instance.navigateTo(HomeScreen.route);
+            },
+          ),
           verticalSpace(30),
           TextWidget(
             'OR LOGIN WITH',

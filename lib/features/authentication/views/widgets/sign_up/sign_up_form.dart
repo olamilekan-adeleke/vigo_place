@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../cores/components/custom_button.dart';
 import '../../../../../cores/components/custom_text_widget.dart';
 import '../../../../../cores/components/custom_textfiled.dart';
 import '../../../../../cores/constants/color.dart';
@@ -89,6 +90,8 @@ class SignUpFormWidget extends StatelessWidget {
           onChanged: (_) {},
           controlAffinity: ListTileControlAffinity.leading,
         ),
+        verticalSpace(30),
+        CustomButton(text: 'Sign up', onTap: () {}),
       ],
     );
   }

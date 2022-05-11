@@ -12,16 +12,39 @@ class AppBarWidget extends StatelessWidget {
     this.width = 120,
     this.height = 24,
     this.showBackButton = true,
+    this.centered = true,
     this.trilling,
   }) : super(key: key);
 
   final double width;
   final double height;
   final bool showBackButton;
+  final bool centered;
   final Widget? trilling;
 
   @override
   Widget build(BuildContext context) {
+    if (centered == false) {
+      return Container(
+        padding: EdgeInsets.only(top: sp(20), bottom: sp(10)),
+        color: kcWhite,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              height: sp(height),
+              width: sp(width),
+              child: const CustomImageWidget(
+                imageUrl: 'assets/icons/app_name.png',
+                imageTypes: ImageTypes.asset,
+              ),
+            ),
+            trilling ?? Container(),
+          ],
+        ),
+      );
+    }
+
     return Container(
       padding: EdgeInsets.only(top: sp(20), bottom: sp(10)),
       color: kcWhite,
