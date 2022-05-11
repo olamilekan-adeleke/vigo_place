@@ -12,8 +12,6 @@ class LoginUserDataModel {
     required this.coverPhoto,
     required this.gender,
     required this.address,
-    required this.lastLogin,
-    required this.createdAt,
     required this.placeId,
     required this.email,
   });
@@ -30,8 +28,6 @@ class LoginUserDataModel {
   final dynamic coverPhoto;
   final String gender;
   final dynamic address;
-  final DateTime lastLogin;
-  final DateTime createdAt;
   final int placeId;
   final String email;
 
@@ -49,8 +45,6 @@ class LoginUserDataModel {
       coverPhoto: json["coverphoto"],
       gender: json["gender"],
       address: json["address"],
-      lastLogin: DateTime.parse(json["lastlogin"]),
-      createdAt: DateTime.parse(json["createdat"]),
       placeId: json["placeId"],
       email: json["email"],
     );

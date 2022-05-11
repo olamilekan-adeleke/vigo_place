@@ -82,15 +82,16 @@ class SignUpFormWidget extends StatelessWidget {
 
                   signUpCubit.onDobChanged(formatData);
                 },
-                child: CustomTextField(
-                  prefix: Padding(
-                    padding: EdgeInsets.all(sp(10)),
-                    child: SvgPicture.asset('assets/icons/calendar.svg'),
+                child: AbsorbPointer(
+                  child: CustomTextField(
+                    prefix: Padding(
+                      padding: EdgeInsets.all(sp(10)),
+                      child: SvgPicture.asset('assets/icons/calendar.svg'),
+                    ),
+                    hintText: state.dob.isEmpty ? 'May 30, 2001' : state.dob,
+                    validator: dobValidator,
+                    onChanged: signUpCubit.onDobChanged,
                   ),
-                  hintText: state.dob.isEmpty ? 'May 30, 2001' : state.dob,
-                  enabled: false,
-                  validator: dobValidator,
-                  onChanged: signUpCubit.onDobChanged,
                 ),
               );
             },
@@ -159,6 +160,8 @@ class SignUpFormWidget extends StatelessWidget {
                           ' Policy by click the "Terms of Service and Privacy Policy" check box',
                     );
                   }
+
+                  signUpCubit.onFormSubmitted();
                 },
               );
             },
