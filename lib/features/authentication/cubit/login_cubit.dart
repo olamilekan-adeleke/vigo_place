@@ -18,6 +18,10 @@ class LoginCubit extends Cubit<LoginStateModel> {
     emit(state.copyWith(password: password, status: StatusEnum.unknown));
   }
 
+  void onRememberMeChanged(bool? rememberMe) {
+    emit(state.copyWith(rememberMe: rememberMe, status: StatusEnum.unknown));
+  }
+
   Future<void> onFormSubmitted() async {
     try {
       emit(state.copyWith(status: StatusEnum.busy));
