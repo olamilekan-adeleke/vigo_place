@@ -30,6 +30,10 @@ class SignUpCubit extends Cubit<SignUpStateModel> {
     emit(state.copyWith(password: password, status: StatusEnum.unknown));
   }
 
+  void onIsAcceptedChanged(bool? isAccepted) {
+    emit(state.copyWith(isAccepted: isAccepted, status: StatusEnum.unknown));
+  }
+
   Future<void> onFormSubmitted() async {
     try {
       emit(state.copyWith(status: StatusEnum.busy));

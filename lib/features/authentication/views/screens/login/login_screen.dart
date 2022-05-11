@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  AppRouter.instance.navigateTo(SignUpScreen.route);
+                  AppRouter.instance.navigateToAndReplace(SignUpScreen.route);
                 },
                 child: TwoSpanTextWidget(
                   "Don't have an account yet? ",

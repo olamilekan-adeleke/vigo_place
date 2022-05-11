@@ -8,7 +8,13 @@ String? formFieldValidator(String? value, String title, int length) {
   return null;
 }
 
+String? dobValidator(String? value) {
+  if (value == '' || value == null) {
+    return 'Date Of Birth must not be empty!';
+  }
 
+  return null;
+}
 
 String? passwordValidator(String? value) {
   if (value == '' || value == null) {
@@ -44,8 +50,6 @@ String? emailValidator(String? value) {
   return null;
 }
 
-
-
 String? nameValidator(String? value) {
   if (value == '' || value == null) {
     return 'Username must not be empty!';
@@ -54,7 +58,6 @@ String? nameValidator(String? value) {
   }
   return null;
 }
-
 
 String? mobileValidator(String? value) {
   if (value == '' || value == null) {

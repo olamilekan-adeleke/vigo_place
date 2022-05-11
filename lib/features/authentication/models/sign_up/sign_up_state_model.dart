@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../../../../cores/utils/status_enum.dart';
 
 class SignUpStateModel {
@@ -7,6 +8,7 @@ class SignUpStateModel {
     this.fullname = '',
     this.dob = '',
     this.password = '',
+    this.isAccepted = false,
     this.errorText = '',
     this.status = StatusEnum.unknown,
   });
@@ -16,6 +18,7 @@ class SignUpStateModel {
   final String fullname;
   final String dob;
   final String password;
+  final bool isAccepted;
   final String errorText;
   final StatusEnum status;
 
@@ -25,6 +28,7 @@ class SignUpStateModel {
     String? fullname,
     String? dob,
     String? password,
+    bool? isAccepted,
     String? errorText,
     StatusEnum? status,
   }) {
@@ -34,6 +38,7 @@ class SignUpStateModel {
       fullname: fullname ?? this.fullname,
       dob: dob ?? this.dob,
       password: password ?? this.password,
+      isAccepted: isAccepted ?? this.isAccepted,
       errorText: errorText ?? this.errorText,
       status: status ?? this.status,
     );
