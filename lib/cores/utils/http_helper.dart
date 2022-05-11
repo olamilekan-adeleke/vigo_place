@@ -55,13 +55,6 @@ class HttpHelper {
       final Map<String, dynamic> result = json.decode(response.body);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        if (result['status'] != 200 &&
-            result['status'] != 201 &&
-            result['meta']?['status'] != 200 &&
-            result['meta']?['status'] != 201) {
-          throw result['message'];
-        }
-
         return result;
       } else {
         throw result['message'];

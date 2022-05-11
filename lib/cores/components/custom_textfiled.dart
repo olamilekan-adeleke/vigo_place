@@ -50,7 +50,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           maxLines: widget.maxLine,
           enabled: widget.enabled,
           cursorColor: kcPrimaryColor,
-          style: GoogleFonts.poppins(fontSize: sp(11)),
+          style: GoogleFonts.poppins(fontSize: sp(14)),
           controller: widget.textEditingController,
           autocorrect: widget.autoCorrect,
           autovalidateMode: widget.validator != null

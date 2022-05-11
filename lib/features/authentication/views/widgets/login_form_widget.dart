@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vigo_place/cores/utils/validator.dart';
 
 import '../../../../../cores/components/custom_button.dart';
 import '../../../../../cores/components/custom_text_widget.dart';
 import '../../../../../cores/components/custom_textfiled.dart';
 import '../../../../../cores/constants/color.dart';
 import '../../../../../cores/utils/sizer_utils.dart';
+import '../../../../cores/utils/status_enum.dart';
 import '../../cubit/login_cubit.dart';
 import '../../models/login/login_state_model.dart';
 
@@ -37,6 +39,7 @@ class LoginFromWidget extends StatelessWidget {
               child: SvgPicture.asset('assets/icons/person.svg'),
             ),
             hintText: 'Username or email address',
+            validator: nameValidator,
             onChanged: loginCubit.onUsernameChanged,
           ),
           verticalSpace(20),
@@ -47,6 +50,7 @@ class LoginFromWidget extends StatelessWidget {
             ),
             hintText: 'Password',
             isPassword: true,
+            validator: passwordValidator,
             onChanged: loginCubit.onPasswordChanged,
           ),
           verticalSpace(22),
@@ -78,12 +82,20 @@ class LoginFromWidget extends StatelessWidget {
             ],
           ),
           verticalSpace(30),
-          CustomButton(
-            text: 'Login',
-            onTap: () {
-              if (_formKey.currentState?.validate() ?? false) {
-                loginCubit.onFormSubmitted();
+          BlocBuilder<LoginCubit, LoginStateModel>(
+            builder: (context, state) {
+              if (state.status == StatusEnum.busy) {
+                return const CustomButton.loading();
               }
+
+              return CustomButton(
+                text: 'Login',
+                onTap: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    loginCubit.onFormSubmitted();
+                  }
+                },
+              );
             },
           ),
         ],
