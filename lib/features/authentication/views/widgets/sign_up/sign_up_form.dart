@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../cores/components/custom_button.dart';
 import '../../../../../cores/components/custom_text_widget.dart';
 import '../../../../../cores/components/custom_textfiled.dart';
 import '../../../../../cores/constants/color.dart';
+import '../../../../../cores/utils/date_time_picker.dart';
 import '../../../../../cores/utils/sizer_utils.dart';
 import '../../../../../cores/utils/snack_bar_service.dart';
 import '../../../../../cores/utils/status_enum.dart';
@@ -64,14 +68,32 @@ class SignUpFormWidget extends StatelessWidget {
             onChanged: signUpCubit.onEmailChanged,
           ),
           verticalSpace(20),
-          CustomTextField(
-            prefix: Padding(
-              padding: EdgeInsets.all(sp(10)),
-              child: SvgPicture.asset('assets/icons/calendar.svg'),
-            ),
-            hintText: 'May 30, 2001',
-            validator: dobValidator,
-            onChanged: signUpCubit.onDobChanged,
+          BlocBuilder<SignUpCubit, SignUpStateModel>(
+            builder: (context, state) {
+              return GestureDetector(
+                onTap: () async {
+                  final DateTime? date =
+                      await DateTimePickerHelper.pickDate(context);
+
+                  if (date == null) return;
+
+                  final String formatData =
+                      DateFormat('MMM dd, yyyy').format(date);
+
+                  signUpCubit.onDobChanged(formatData);
+                },
+                child: CustomTextField(
+                  prefix: Padding(
+                    padding: EdgeInsets.all(sp(10)),
+                    child: SvgPicture.asset('assets/icons/calendar.svg'),
+                  ),
+                  hintText: state.dob.isEmpty ? 'May 30, 2001' : state.dob,
+                  enabled: false,
+                  validator: dobValidator,
+                  onChanged: signUpCubit.onDobChanged,
+                ),
+              );
+            },
           ),
           verticalSpace(20),
           CustomTextField(
