@@ -5,8 +5,7 @@ class SessionManager {
 
   static final Map<String, dynamic> _loginData = {};
 
-  String get token => _loginData['access_token'] ?? '';
-  String get sub => _loginData['sub'] ?? '';
+  String get token => _loginData['token'] ?? '';
 
   void setLoginData(Map<String, dynamic> data) {
     _loginData.clear();

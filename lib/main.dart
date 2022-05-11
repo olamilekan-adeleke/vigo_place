@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_screen_utils/responsive_screenutil_init.dart';
 
+import 'bloc_provider_helper.dart';
 import 'cores/constants/color.dart';
 import 'cores/navigator/app_router.dart';
 import 'cores/navigator/router_generator.dart';
@@ -17,17 +19,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveScreenUtilInit(
-      designSize: const Size(428, 926),
-      child: MaterialApp(
-        title: 'VigoPlace',
-        theme: ThemeData(
-          primaryColor: kcPrimaryColor,
-          scaffoldBackgroundColor: kcWhite,
+    return MultiBlocProvider(
+      providers: BlocProviderHelper.call(context),
+      child: ResponsiveScreenUtilInit(
+        designSize: const Size(428, 926),
+        child: MaterialApp(
+          title: 'VigoPlace',
+          theme: ThemeData(
+            primaryColor: kcPrimaryColor,
+            scaffoldBackgroundColor: kcWhite,
+          ),
+          initialRoute: AuthStateScreen.route,
+          onGenerateRoute: RouteGenerator.generateRoute,
+          navigatorKey: AppRouter.instance.navigatorKey,
         ),
-        initialRoute: AuthStateScreen.route,
-        onGenerateRoute: RouteGenerator.generateRoute,
-        navigatorKey: AppRouter.instance.navigatorKey,
       ),
     );
   }
