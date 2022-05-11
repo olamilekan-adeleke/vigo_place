@@ -11,6 +11,7 @@ import '../../../../../cores/constants/color.dart';
 import '../../../../../cores/navigator/app_router.dart';
 import '../../../../../cores/utils/sizer_utils.dart';
 import '../../widgets/social_widget.dart';
+import '../sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -86,12 +87,17 @@ class LoginScreen extends StatelessWidget {
           verticalSpace(20),
           const SocialWidget(),
           const Spacer(),
-          TwoSpanTextWidget(
-            "Don't have an account yet? ",
-            'Sign up',
-            fontWeight: FontWeight.w700,
-            firstFontWeight: FontWeight.w400,
-            fontSize: sp(14),
+          GestureDetector(
+            onTap: () {
+              AppRouter.instance.navigateTo(SignUpScreen.route);
+            },
+            child: TwoSpanTextWidget(
+              "Don't have an account yet? ",
+              'Sign up',
+              fontWeight: FontWeight.w700,
+              firstFontWeight: FontWeight.w400,
+              fontSize: sp(14),
+            ),
           ),
           verticalSpace(40),
         ],

@@ -9,6 +9,7 @@ import '../../../../cores/components/custom_text_widget.dart';
 import '../../../../cores/constants/color.dart';
 import '../../../../cores/navigator/app_router.dart';
 import '../../../../cores/utils/sizer_utils.dart';
+import 'sign_up/sign_up_screen.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({Key? key}) : super(key: key);
@@ -57,7 +58,9 @@ class IntroScreen extends StatelessWidget {
           BorderButton(
             text: 'Sign Up',
             textColor: kcPrimaryColor,
-            onTap: () {},
+            onTap: () {
+              AppRouter.instance.navigateTo(SignUpScreen.route);
+            },
           ),
         ],
       ),
