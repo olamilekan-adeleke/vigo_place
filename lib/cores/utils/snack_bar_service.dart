@@ -15,7 +15,7 @@ class SnackBarService {
         textColor: kcWhite,
         textAlign: TextAlign.left,
       ),
-      behavior: SnackBarBehavior.fixed,
+      behavior: SnackBarBehavior.floating,
       duration: duration,
       backgroundColor: Colors.red,
       // action: SnackBarAction(
@@ -39,7 +39,7 @@ class SnackBarService {
         textColor: kcWhite,
         textAlign: TextAlign.left,
       ),
-      behavior: SnackBarBehavior.fixed,
+      behavior: SnackBarBehavior.floating,
       duration: duration,
       backgroundColor: Colors.green,
       // action: SnackBarAction(
@@ -63,7 +63,7 @@ class SnackBarService {
         textColor: kcWhite,
         textAlign: TextAlign.left,
       ),
-      behavior: SnackBarBehavior.fixed,
+      behavior: SnackBarBehavior.floating,
       duration: duration,
       backgroundColor: Colors.grey.shade800,
       // action: SnackBarAction(
