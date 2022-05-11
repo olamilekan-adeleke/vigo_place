@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,6 +19,7 @@ class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({Key? key}) : super(key: key);
 
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  static final TextEditingController dob = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +80,11 @@ class SignUpFormWidget extends StatelessWidget {
                       DateFormat('MMM dd, yyyy').format(date);
 
                   signUpCubit.onDobChanged(formatData);
+                  dob.text = formatData;
                 },
                 child: AbsorbPointer(
                   child: CustomTextField(
+                    textEditingController: dob,
                     prefix: Padding(
                       padding: EdgeInsets.all(sp(10)),
                       child: SvgPicture.asset('assets/icons/calendar.svg'),
@@ -148,7 +149,7 @@ class SignUpFormWidget extends StatelessWidget {
               return CustomButton(
                 text: 'Sign up',
                 onTap: () {
-                  if (_formKey.currentState?.validate() ?? false == false) {
+                  if ((_formKey.currentState?.validate() ?? false) == false) {
                     return;
                   }
 
