@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import '../../features/authentication/views/screens/auth_state_screen.dart';
+import '../../features/authentication/views/screens/login/login_screen.dart';
 import 'error_route_screen.dart';
 
 class RouteGenerator {
@@ -12,8 +13,8 @@ class RouteGenerator {
       case AuthStateScreen.route:
         return MaterialPageRoute(builder: (_) => const AuthStateScreen());
 
-      // case LoginScreen.route:
-      //   return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case LoginScreen.route:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
 
       // case SignUpScreen.route:
       //   return MaterialPageRoute(builder: (_) => const SignUpScreen());

@@ -12,20 +12,19 @@ class CustomTextField extends StatefulWidget {
     this.textEditingController,
     this.autoCorrect = true,
     required this.hintText,
-    required this.title,
     this.validator,
     this.textInputType = TextInputType.text,
     this.isPassword = false,
     this.enabled = true,
     this.maxLine = 1,
     this.suffix,
+    this.prefix,
     this.onChanged,
   }) : super(key: key);
 
   final TextEditingController? textEditingController;
   final bool autoCorrect;
   final String hintText;
-  final String title;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final TextInputType textInputType;
@@ -33,6 +32,7 @@ class CustomTextField extends StatefulWidget {
   final bool enabled;
   final int? maxLine;
   final IconData? suffix;
+  final Widget? prefix;
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -46,76 +46,66 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return ValueListenableBuilder<bool>(
       valueListenable: obscureText,
       builder: (BuildContext context, bool value, dynamic child) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextWidget(
-              widget.title,
-              fontSize: sp(11),
-              fontWeight: FontWeight.w500,
+        return TextFormField(
+          maxLines: widget.maxLine,
+          enabled: widget.enabled,
+          cursorColor: kcPrimaryColor,
+          style: GoogleFonts.poppins(fontSize: sp(11)),
+          controller: widget.textEditingController,
+          autocorrect: widget.autoCorrect,
+          autovalidateMode: widget.validator != null
+              ? AutovalidateMode.onUserInteraction
+              : null,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: const Color(0xffF3F4F8),
+            border: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(sp(4.0)),
             ),
-            TextFormField(
-              maxLines: widget.maxLine,
-              enabled: widget.enabled,
-              cursorColor: kcPrimaryColor,
-              style: GoogleFonts.poppins(fontSize: sp(11)),
-              controller: widget.textEditingController,
-              autocorrect: widget.autoCorrect,
-              autovalidateMode: widget.validator != null
-                  ? AutovalidateMode.onUserInteraction
-                  : null,
-              decoration: InputDecoration(
-                filled: true,
-                // fillColor: Colors.grey.shade100,
-                fillColor: const Color(0xffC2C7CB).withOpacity(0.2),
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(sp(48.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(sp(48.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(sp(48.0)),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(sp(48.0)),
-                ),
-                hintText: widget.hintText,
-                hintStyle: TextStyle(
-                  color: const Color(0xffC2C7CB),
-                  fontWeight: FontWeight.w400,
-                  fontSize: sp(11),
-                ),
-                suffixIcon: widget.isPassword == true
-                    ? IconButton(
-                        icon: Icon(value
-                            ? CupertinoIcons.eye_slash_fill
-                            : CupertinoIcons.eye_fill),
-                        onPressed: () => obscureText.value = !obscureText.value,
-                      )
-                    : widget.suffix != null
-                        ? Icon(widget.suffix)
-                        : const SizedBox(),
-              ),
-              keyboardType: widget.textInputType,
-              obscureText: value && widget.isPassword,
-              validator: (String? val) => widget.validator!(val?.trim()),
-              onChanged: (String val) {
-                if (widget.onChanged == null) return;
-
-                widget.onChanged!(val.trim());
-              },
-              onSaved: (String? val) {
-                if (widget.onChanged == null) return;
-
-                widget.onChanged!(val!.trim());
-              },
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(sp(4.0)),
             ),
-          ],
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(sp(4.0)),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(sp(4.0)),
+            ),
+            hintText: widget.hintText,
+            hintStyle: TextStyle(
+              color: const Color(0xff8E8F99),
+              fontWeight: FontWeight.w400,
+              fontSize: sp(14),
+            ),
+            prefixIcon: widget.prefix,
+            suffixIcon: widget.isPassword == true
+                ? IconButton(
+                    icon: Icon(value
+                        ? CupertinoIcons.eye_slash_fill
+                        : CupertinoIcons.eye_fill),
+                    onPressed: () => obscureText.value = !obscureText.value,
+                  )
+                : widget.suffix != null
+                    ? Icon(widget.suffix)
+                    : const SizedBox(),
+          ),
+          keyboardType: widget.textInputType,
+          obscureText: value && widget.isPassword,
+          validator: (String? val) => widget.validator!(val?.trim()),
+          onChanged: (String val) {
+            if (widget.onChanged == null) return;
+
+            widget.onChanged!(val.trim());
+          },
+          onSaved: (String? val) {
+            if (widget.onChanged == null) return;
+
+            widget.onChanged!(val!.trim());
+          },
         );
       },
     );

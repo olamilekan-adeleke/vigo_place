@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vigo_place/cores/components/image_widget.dart';
+import 'package:vigo_place/features/authentication/views/screens/login/login_screen.dart';
 import '../../../../cores/components/app_bar_widget.dart';
 import '../../../../cores/components/custom_button.dart';
 import '../../../../cores/components/custom_scaffold_widget.dart';
 
 import '../../../../cores/components/custom_text_widget.dart';
 import '../../../../cores/constants/color.dart';
+import '../../../../cores/navigator/app_router.dart';
 import '../../../../cores/utils/sizer_utils.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -30,7 +32,7 @@ class IntroScreen extends StatelessWidget {
           ),
           verticalSpace(35),
           SizedBox(
-            height: sp(80),
+            height: sp(90),
             width: double.infinity,
             child: const CustomImageWidget(
               imageUrl: 'assets/images/build_text.png',
@@ -45,7 +47,12 @@ class IntroScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           verticalSpace(40),
-          CustomButton(text: 'Login', onTap: () {}),
+          CustomButton(
+            text: 'Login',
+            onTap: () {
+              AppRouter.instance.navigateTo(LoginScreen.route);
+            },
+          ),
           verticalSpace(20),
           BorderButton(
             text: 'Sign Up',
